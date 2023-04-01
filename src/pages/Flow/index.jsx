@@ -1,27 +1,18 @@
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useState,
-  useRef,
-} from 'react';
+import { PageContainer } from '@ant-design/pro-components';
 import { isEmpty } from 'lodash';
-import initConfig from './init.json';
-import OpContext from './context/OperatorContext';
-import ZoomLayout from './components/ZoomLayout';
-import Render from './components/Render';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { NodeItemType, NodeTemplates, NodeTypes } from './components/Constants';
 import EndNode from './components/End';
 import MyDrawer from './components/MyDrawer';
+import Render from './components/Render';
 import SetApprover from './components/SetApprover';
 import SetCondition from './components/SetCondition';
-import { OptionTypes, NodeTemplates, NodeTypes } from './components/Constants';
+import ZoomLayout from './components/ZoomLayout';
+import OpContext from './context/OperatorContext';
 import './index.less';
-import {
-  PageContainer,
-} from '@ant-design/pro-components';
+import initConfig from './init.json';
 const Flow = forwardRef((props, ref) => {
-  const [config, setConfig] = useState(
-    isEmpty(props.config) ? initConfig : props.config,
-  );
+  const [config, setConfig] = useState(isEmpty(props.config) ? initConfig : props.config);
   const [currentNode, setCurrentNode] = useState({});
   const approverRef = useRef(null);
   const conditionRef = useRef(null);
@@ -29,39 +20,70 @@ const Flow = forwardRef((props, ref) => {
   const updateNode = () => {
     setConfig({ ...config });
   };
+  /** 处理添加审核人节点 */
+  const handleAddApprover = (objRef) => {
+    objRef.childNode = {
+      ...NodeTemplates[NodeItemType.APPROVER],
+      childNode: objRef.childNode,
+    };
+  };
+  /** 处理添加抄送人节点 */
+  const handleAddNotifier = (objRef) => {
+    objRef.childNode = {
+      ...NodeTemplates[NodeItemType.NOTIFIER],
+      childNode: objRef.childNode,
+    };
+  };
+  /** 处理添加条件分支节点 */
+  const handleAddCondition = (objRef) => {
+    objRef.childNode = {
+      ...NodeTemplates[NodeItemType.CONDITION],
+      conditionNodes: [
+        {
+          ...NodeTemplates[NodeItemType.BRANCH],
+          nodeName: '条件1',
+          childNode: objRef.childNode,
+        },
+        { ...NodeTemplates[NodeItemType.BRANCH], nodeName: '条件2' },
+      ],
+    };
+  };
+
+  /** 处理添加分支节点 */
+  const handleAddBranch = (objRef) => {
+    objRef.conditionNodes.push({ ...NodeTemplates[NodeTypes.BRANCH] });
+  };
+
+  /** 处理添加并行分支节点 */
+  const handleAddConcurrent = (objRef) => {
+    objRef.childNode = {
+      ...NodeTemplates[NodeItemType.CONCURRENTS],
+      conditionNodes: [
+        {
+          ...NodeTemplates[NodeItemType.BRANCH],
+          nodeName: '分支2',
+          childNode: objRef.childNode,
+        },
+        { ...NodeTemplates[NodeItemType.BRANCH], nodeName: '分支2' },
+      ],
+    };
+  };
 
   const onAddNode = (type, pRef, objRef) => {
-    const o = objRef.childNode;
-    if (type === OptionTypes.APPROVER) {
-      objRef.childNode = {
-        ...NodeTemplates[OptionTypes.APPROVER],
-        childNode: o,
-      };
-    }
-    if (type === OptionTypes.NOTIFIER) {
-      objRef.childNode = {
-        ...NodeTemplates[OptionTypes.NOTIFIER],
-        childNode: o,
-      };
-    }
-    if (type === OptionTypes.CONDITION) {
-      objRef.childNode = {
-        ...NodeTemplates[OptionTypes.CONDITION],
-        conditionNodes: [
-          {
-            ...NodeTemplates[OptionTypes.BRANCH],
-            nodeName: '条件1',
-            childNode: o,
-          },
-          { ...NodeTemplates[OptionTypes.BRANCH], nodeName: '条件2' },
-        ],
-      };
-    }
-    if (type === OptionTypes.BRANCH) {
-      objRef.conditionNodes.push({ ...NodeTemplates[NodeTypes.BRANCH] });
-    }
+    // const o = objRef.childNode;
+    console.log('onAddNode', type, objRef);
+    const typeMap = {
+      [NodeItemType.APPROVER]: handleAddApprover,
+      [NodeItemType.NOTIFIER]: handleAddNotifier,
+      [NodeItemType.CONDITION]: handleAddCondition,
+      [NodeItemType.BRANCH]: handleAddBranch,
+      [NodeItemType.CONCURRENTS]: handleAddConcurrent,
+    };
+    /** 执行节点插入 */
+    typeMap[type]?.(objRef);
     updateNode();
   };
+
   const onDeleteNode = (pRef, objRef, type, index) => {
     if (window.confirm('是否删除节点？')) {
       if (type === NodeTypes.BRANCH) {
@@ -78,7 +100,7 @@ const Flow = forwardRef((props, ref) => {
 
   // 获取节点
   const onSelectNode = (pRef, objRef) => {
-    setCurrentNode(objRef)
+    setCurrentNode(objRef);
   };
 
   // 打开审批人Drawer
@@ -127,7 +149,6 @@ const Flow = forwardRef((props, ref) => {
         >
           <SetCondition formItems={props?.formItems || []} />
         </MyDrawer>
-
       </OpContext.Provider>
     </PageContainer>
   );

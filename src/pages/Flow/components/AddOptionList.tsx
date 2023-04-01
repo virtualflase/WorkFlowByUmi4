@@ -4,55 +4,35 @@ import {
   BarsOutlined,
   DingtalkOutlined,
 } from '@ant-design/icons';
-import { AddOptionsItemWrap } from '../flow.styled';
-import { OptionNames, OptionTypes } from './Constants';
+import { AddOptionsItemWrap, AddOptionsWrap } from '../flow.styled';
+import { NodeItemType, NodeNames } from './Constants';
 type TProps = {
-  onOptionClick: (params: OptionTypes) => void;
+  onOptionClick: (params: NodeItemType) => void;
 };
 function AddNodeList(props: TProps) {
   return (
-    <div>
+    <AddOptionsWrap>
       {/* 添加审批人 */}
-      <AddOptionsItemWrap>
-        <div className="wrap">
-          <AuditOutlined
-            style={{ color: '#ff943e', fontSize: '32px' }}
-            onClick={() => props.onOptionClick(OptionTypes.APPROVER)}
-          />
-        </div>
-        <span className="text">{OptionNames[OptionTypes.APPROVER]}</span>
+      <AddOptionsItemWrap onClick={() => props.onOptionClick(NodeItemType.APPROVER)}>
+        <AuditOutlined style={{ color: '#ff943e', fontSize: '32px' }} />
+        <span className="text">{NodeNames[NodeItemType.APPROVER]}</span>
       </AddOptionsItemWrap>
       {/* 添加抄送人 */}
-      <AddOptionsItemWrap>
-        <div className="wrap">
-          <DingtalkOutlined
-            style={{ color: '#3296fa', fontSize: '32px' }}
-            onClick={() => props.onOptionClick(OptionTypes.NOTIFIER)}
-          />
-        </div>
-        <span className="text">{OptionNames[OptionTypes.NOTIFIER]}</span>
+      <AddOptionsItemWrap onClick={() => props.onOptionClick(NodeItemType.NOTIFIER)}>
+        <DingtalkOutlined style={{ color: '#3296fa', fontSize: '32px' }} />
+        <span className="text">{NodeNames[NodeItemType.NOTIFIER]}</span>
       </AddOptionsItemWrap>
       {/* 添加条件分支 */}
-      <AddOptionsItemWrap>
-        <div className="wrap">
-          <ApartmentOutlined
-            style={{ color: '#15bc83', fontSize: '32px', borderRadius: '16px' }}
-            onClick={() => props.onOptionClick(OptionTypes.CONDITION)}
-          />
-        </div>
-        <span className="text">{OptionNames[OptionTypes.CONDITION]}</span>
+      <AddOptionsItemWrap onClick={() => props.onOptionClick(NodeItemType.CONDITION)}>
+        <ApartmentOutlined style={{ color: '#15bc83', fontSize: '32px', borderRadius: '16px' }} />
+        <span className="text">{NodeNames[NodeItemType.CONDITION]}</span>
       </AddOptionsItemWrap>
       {/* 添加并行分支 */}
-      <AddOptionsItemWrap>
-        <div className="wrap">
-          <BarsOutlined
-            style={{ color: '#3296fa', fontSize: '32px', borderRadius: '16px' }}
-            onClick={() => props.onOptionClick(OptionTypes.CONCURRENTS)}
-          />
-        </div>
-        <span className="text">{OptionNames[OptionTypes.CONCURRENTS]}</span>
+      <AddOptionsItemWrap onClick={() => props.onOptionClick(NodeItemType.CONCURRENTS)}>
+        <BarsOutlined style={{ color: '#3296fa', fontSize: '32px', borderRadius: '16px' }} />
+        <span className="text">{NodeNames[NodeItemType.CONCURRENTS]}</span>
       </AddOptionsItemWrap>
-    </div>
+    </AddOptionsWrap>
   );
 }
 

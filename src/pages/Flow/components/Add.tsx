@@ -1,20 +1,25 @@
 import { PlusCircleFilled } from '@ant-design/icons';
 import { Popover } from 'antd';
-import { useContext, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import WFC from '../context/OperatorContext';
 import AddNodeList from './AddOptionList';
-import { OptionTypes } from './Constants';
+import { NodeItemType } from './Constants';
 
 type TProps = {
-  pRef: any;
-  objRef: any;
+  pRef?: any;
+  objRef?: any;
 };
 function AddNode(props: TProps) {
   const { onAddNode } = useContext(WFC);
-  const onOptionClick = (type: OptionTypes) => {
-    onAddNode(type, props.pRef, props.objRef);
-  };
-  const addNodeList = useMemo(() => <AddNodeList onOptionClick={onOptionClick} />, []);
+  const onOptionClick = useCallback(
+    (type: NodeItemType) => {
+      console.log('onOptionClick', type);
+      onAddNode(type, props.pRef, props.objRef);
+    },
+    [onAddNode],
+  );
+
+  const addNodeList = useMemo(() => <AddNodeList onOptionClick={onOptionClick} />, [onOptionClick]);
 
   return (
     <div className="add-node-btn-box">
