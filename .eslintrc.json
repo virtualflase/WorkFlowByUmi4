@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "extends": [
+        "react-app",
+        "react-app/jest",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:react/jsx-runtime",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": ["./tsconfig.json"]
+    },
+    "rules": {
+        "@typescript-eslint/comma-dangle": [1, "never"],
+        "@typescript-eslint/no-unused-vars": 1,
+        "react/function-component-definition": 0,
+        "react/jsx-filename-extension": [
+            2,
+            {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        ],
+        "react/jsx-props-no-spreading": 0,
+        "react/jsx-uses-react": 2,
+        "react/require-default-props": 0,
+        "react/prop-types": 0,
+        // 允许全局任何地方使用require
+        "global-require": 0,
+        // 允许动态使用require
+        "import/no-dynamic-require": 0,
+        "import/prefer-default-export": 0,
+        // 允许在函数内容通过render方法渲染组件
+        "react/no-unstable-nested-components": 0,
+        "import/extensions": 0,
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": ["src/mock/*", "**/*.mock.ts", "**/*.test.ts", "**/*.test.tsx"]
+            }
+        ],
+        "no-bitwise": 0, //允许使用按位运算符
+        "no-console": "off", // 取消禁用console
+        "no-continue": 0,
+        "no-debugger": 1,
+        "no-param-reassign": 0, // 会警告rtk中的state赋值,所以关闭
+        "no-prototype-builtins": 0,
+        // 字段命名不能用_,因为接口有所以去掉
+        "no-underscore-dangle": 0,
+        "no-restricted-syntax": 0,
+        // 非必要的return不允许使用,但是有些地方需要return做流程控制来避免ifelse,所以关闭
+        "no-useless-return": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+        "jsx-a11y/click-events-have-key-events": 0
+    },
+    "settings": {
+        "import/resolver": {}
+    }
+}

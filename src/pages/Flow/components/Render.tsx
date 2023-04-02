@@ -2,7 +2,7 @@ import React from 'react';
 import MatchNode from './Node';
 type TProps = {
   config: any;
-  pRef: any;
+  pRef?: any;
 };
 function Render({ config, pRef }: TProps) {
   return (

@@ -4,7 +4,7 @@ import {
   BarsOutlined,
   DingtalkOutlined,
 } from '@ant-design/icons';
-import { AddOptionsItemWrap, AddOptionsWrap } from '../flow.styled';
+import { AddOptionsItemWrap, AddOptionsWrap } from '../flow.styles';
 import { NodeItemType, NodeNames } from './Constants';
 type TProps = {
   onOptionClick: (params: NodeItemType) => void;

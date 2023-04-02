@@ -1,6 +1,11 @@
-import { createGlobalStyle } from "@umijs/max";
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const globaltheme: DefaultTheme = {
+  conCurrentColor: '#718dff',
+  conditionColor: '#15bc83',
+};
+
+export const GlobalStyle = createGlobalStyle`
     html,
     body,
     p,
@@ -86,4 +91,3 @@ const GlobalStyle = createGlobalStyle`
         width: auto;
     }
 `;
-export default GlobalStyle;

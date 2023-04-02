@@ -58,7 +58,7 @@ export const NodeTemplates = {
     conditionNodes: [],
   },
   [NodeItemType.BRANCH]: {
-    nodeName: '条件1',
+    nodeName: '条件',
     type: NodeItemType.BRANCH,
     priorityLevel: 2,
     conditionList: {},
