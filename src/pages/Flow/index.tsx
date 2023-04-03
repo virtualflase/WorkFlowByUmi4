@@ -1,6 +1,5 @@
 import { PageContainer } from '@ant-design/pro-components';
-import _ from '@umijs/utils/compiled/lodash';
-import { isEmpty } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { NodeItemType, NodeTemplates, NodeTypes } from './components/Constants';
 import EndNode from './components/End';
@@ -122,7 +121,7 @@ const Flow = forwardRef((props: any, ref) => {
     };
     /** 复制节点 */
     const copyBranch = (branches: BranchItem[], index: number, move: number) => {
-        const branch = _.cloneDeep(branches[index]);
+        const branch = cloneDeep(branches[index]);
         branch.nodeName = branch.nodeName + '-copy';
         branches.splice(index, 0, branch);
         updateNode();

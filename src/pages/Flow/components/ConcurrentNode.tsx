@@ -109,6 +109,7 @@ function ConcurrentNode({ conditionNodes: branches = [] as BranchItem[], ...rest
                             <div className="col-box" key={`colBox${item.nodeName}`}>
                                 <BranchNode
                                     {...item}
+                                    index={index}
                                     first={index === 0}
                                     onBranchClick={onBranchClick}
                                     delBranch={() => delBranch(index)}

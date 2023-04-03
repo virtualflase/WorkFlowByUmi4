@@ -10745,7 +10745,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@15.x, prop-types@>=15.6.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -11841,6 +11841,14 @@ react-router@6.3.0:
   dependencies:
     history "^5.2.0"
 
+react-smooth-dnd@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.npmmirror.com/react-smooth-dnd/-/react-smooth-dnd-0.11.1.tgz#8d976137854c95f8fc09aa1ebc3069f69ceed6fa"
+  integrity sha512-+lVWQwPlK980VbFLtMSKfAJBt5ep37H/rVm3OnFiTpMFAghB9YQmrj3MnoIZ8tF+/niM/FFLpnSo8IgnbEY4Kg==
+  dependencies:
+    prop-types ">=15.6.0"
+    smooth-dnd "0.12.1"
+
 react-sortable-hoc@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-sortable-hoc/-/react-sortable-hoc-2.0.0.tgz#f6780d8aa4b922a21f3e754af542f032677078b7"
@@ -12735,6 +12743,11 @@ slice-ansi@^4.0.0:
     ansi-styles "^4.0.0"
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
+
+smooth-dnd@0.12.1:
+  version "0.12.1"
+  resolved "https://registry.npmmirror.com/smooth-dnd/-/smooth-dnd-0.12.1.tgz#cdb44c972355659e32770368b29b6a80e0ed96f1"
+  integrity sha512-Dndj/MOG7VP83mvzfGCLGzV2HuK1lWachMtWl/Iuk6zV7noDycIBnflwaPuDzoaapEl3Pc4+ybJArkkx9sxPZg==
 
 sonic-boom@^2.2.1:
   version "2.8.0"

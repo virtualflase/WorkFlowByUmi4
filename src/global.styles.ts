@@ -1,8 +1,9 @@
 import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 export const globaltheme: DefaultTheme = {
-  conCurrentColor: '#718dff',
-  conditionColor: '#15bc83',
+    conCurrentColor: '#718dff',
+    conditionColor: '#15bc83',
+    primaryColor: '#1890FF',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -89,5 +90,15 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         overflow: visible;
         width: auto;
+    };
+    ::-webkit-scrollbar {
+     width: 2px;
+     height: 2px;
+      background-color: #f8f8f8;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 16px;
+      background-color: #f8f8f8;
     }
 `;

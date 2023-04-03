@@ -58,6 +58,12 @@ export default [
     component: './Flow',
   },
   {
+    name: '自定义表单',
+    icon: 'table',
+    path: '/customForm',
+    component: './CustomForm/CustomForm.tsx',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
