@@ -42,18 +42,19 @@ export const CFComponentWrap = styled.div`
         margin: 12px 0;
         padding: 0 20px;
     }
-    .drag {
+    .smooth-dnd-container {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         margin-left: 20px;
 
-        li {
+        .smooth-dnd-draggable-wrapper {
             display: flex;
             align-items: center;
+            margin-left: 6px;
 
             justify-content: center;
-            width: 124px;
+            width: 120px;
             height: 38px;
             margin-bottom: 12px;
             text-align: center;
